@@ -288,7 +288,7 @@ nav {
   top: 2rem;
   left: var(--page-pad);
   font-size: 10px;
-  color: #1e1e1e;
+  color: #888888;
   letter-spacing: 0.18em;
 }
 
@@ -297,7 +297,7 @@ nav {
   bottom: 2rem;
   right: var(--page-pad);
   font-size: 10px;
-  color: #1a1a1a;
+  color: #888888;
   letter-spacing: 0.18em;
 }
 
@@ -310,7 +310,7 @@ nav {
 
 .hero-sub {
   font-size: clamp(11px, 1.1vw, 14px);
-  color: #333;
+  color: #AAAAAA;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -421,7 +421,7 @@ nav {
   align-items: center;
   gap: 10px;
   font-size: 10px;
-  color: #2a2a2a;
+  color: #888888;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   background: transparent;
@@ -437,7 +437,7 @@ nav {
 
 .detail-code {
   font-size: 10px;
-  color: #252525;
+  color: #888888;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
@@ -456,7 +456,7 @@ nav {
 
 .detail-section-label {
   font-size: 10px;
-  color: #252525;
+  color: #888888;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -464,7 +464,7 @@ nav {
 
 .detail-desc {
   font-size: 15px;
-  color: #555;
+  color: #CCCCCC;
   line-height: 1.9;
   max-width: 700px;
 }
@@ -473,7 +473,7 @@ nav {
   display: inline-block;
   border: 1px solid var(--border2);
   background: #0C0C0C;
-  color: #555;
+  color: #AAAAAA;
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -598,8 +598,8 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid var(--border2);
-  color: #333;
+  border: 1px solid #555555;
+  color: #CCCCCC;
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -644,7 +644,7 @@ nav {
 .contact-eyebrow {
   font-size: 10px;
   letter-spacing: 0.32em;
-  color: #252525;
+  color: #888888;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
 }
@@ -657,7 +657,7 @@ nav {
 
 .contact-sub {
   font-size: 11px;
-  color: #2a2a2a;
+  color: #CCCCCC;
   letter-spacing: 0.08em;
   line-height: 1.7;
 }
@@ -675,11 +675,11 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px;
-  border: 1px solid #161616;
+  border: 1px solid #444444;
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #333;
+  color: #AAAAAA;
   background: transparent;
   font-family: var(--font-mono);
   transition: border-color 0.2s, color 0.2s, background 0.2s;
@@ -689,8 +689,8 @@ nav {
 }
 
 .contact-btn:hover {
-  border-color: var(--border3);
-  color: #888;
+  border-color: var(--white);
+  color: var(--white);
 }
 
 .contact-btn.email-btn {
@@ -726,7 +726,7 @@ footer {
   align-items: center;
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: #1f1f1f;
+  color: #888888;
   text-transform: uppercase;
 }
 
@@ -751,7 +751,7 @@ footer {
 
 .login-eyebrow {
   font-size: 10px;
-  color: #1f1f1f;
+  color: #888888;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -776,25 +776,25 @@ footer {
   width: 100%;
   padding: 16px 18px;
   background: var(--bg3);
-  border: 1px solid var(--border);
+  border: 1px solid #444444;
   border-bottom: none;
   color: var(--white);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   outline: none;
   letter-spacing: 0.06em;
   transition: border-color 0.2s, background 0.2s;
 }
 
 .login-field:last-of-type {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #444444;
 }
 
 .login-field::placeholder {
-  color: #1e1e1e;
+  color: #666666;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .login-field:focus {
@@ -831,8 +831,8 @@ footer {
 }
 
 .login-submit:disabled {
-  border-color: #1a1a1a;
-  color: #1a1a1a;
+  border-color: #444444;
+  color: #666666;
 }
 
 .login-error {

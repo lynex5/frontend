@@ -92,7 +92,7 @@ export default function ProjectsManager() {
                     <input className="dash-input" style={{flex: 1}} placeholder="GITHUB LINK" value={githubLink} onChange={e => setGithubLink(e.target.value)} />
                     <input className="dash-input" style={{flex: 1}} placeholder="LIVE LINK" value={liveLink} onChange={e => setLiveLink(e.target.value)} />
                 </div>
-                <button type="submit" className="dash-btn" style={{ alignSelf: 'flex-start' }}>+ ADD PROJECT</button>
+                <button type="submit" className="dash-btn" style={{ alignSelf: 'flex-start' }}>{editingId ? 'UPDATE PROJECT' : '+ ADD PROJECT'}</button>
             </form>
 
             <h3 style={{ fontFamily: 'var(--font-display)', marginBottom: '16px' }}>CURRENT PROJECTS</h3>

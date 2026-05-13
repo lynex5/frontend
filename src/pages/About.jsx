@@ -11,7 +11,7 @@ function About() {
   }, []);
 
   const handleDownload = () => {
-    window.open('https://backend-g3hl.onrender.com/api/resume/download', '_blank');
+    window.location.href = 'https://backend-g3hl.onrender.com/api/resume/download';
   };
 
   return (
