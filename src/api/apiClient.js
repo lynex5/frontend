@@ -1,7 +1,4 @@
-export const BASE_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.MODE === 'production' 
-    ? 'https://backend-g3hl.onrender.com/api' 
-    : 'http://localhost:8080/api');
+export const BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-g3hl.onrender.com/api';
 
 const handleResponse = async (res) => {
     if (!res.ok) {
