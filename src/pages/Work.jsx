@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { get } from '../api/apiClient';
 
 export default function Work() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [hoveredProject, setHoveredProject] = useState(null);
   const navigate = useNavigate();
+
+  const pillRef = useRef(null);
+  const mousePos = useRef({ x: 0, y: 0 });
+  const pillPos = useRef({ x: 0, y: 0 });
+  const requestRef = useRef();
 
   useEffect(() => {
     get('/projects')
@@ -15,8 +18,60 @@ export default function Work() {
       .catch(() => setLoading(false));
   }, []);
 
-  const handleMouseMove = (e) => {
-    setCursorPos({ x: e.clientX, y: e.clientY });
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mousePos.current.x = e.clientX;
+      mousePos.current.y = e.clientY;
+    };
+
+    const handleMouseDown = () => {
+      if (pillRef.current) {
+        pillRef.current.classList.add('is-pressed');
+      }
+    };
+
+    const handleMouseUp = () => {
+      if (pillRef.current) {
+        pillRef.current.classList.remove('is-pressed');
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    const animate = () => {
+      pillPos.current.x = lerp(pillPos.current.x, mousePos.current.x + 20, 0.12);
+      pillPos.current.y = lerp(pillPos.current.y, mousePos.current.y + 10, 0.12);
+
+      if (pillRef.current) {
+        pillRef.current.style.transform = `translate(${pillPos.current.x}px, ${pillPos.current.y}px)`;
+      }
+      requestRef.current = requestAnimationFrame(animate);
+    };
+    
+    requestRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      cancelAnimationFrame(requestRef.current);
+    };
+  }, []);
+
+  const handleMouseEnterRow = () => {
+    if (pillRef.current) {
+      pillRef.current.classList.add('is-active');
+    }
+  };
+
+  const handleMouseLeaveRow = () => {
+    if (pillRef.current) {
+      pillRef.current.classList.remove('is-active');
+    }
   };
 
   if (loading) {
@@ -31,7 +86,7 @@ export default function Work() {
   }
 
   return (
-    <div className="page-wrap" onMouseMove={handleMouseMove}>
+    <div className="page-wrap">
       <div className="section-label">WORK</div>
 
       <div className="projects-list">
@@ -41,17 +96,13 @@ export default function Work() {
           </div>
         ) : (
           projects.map((p) => {
-            const techText = (p.techStack || 'PROJECT')
-              .replace(/,/g, ' →') + ' →';
-            const repeated = (techText + '  ').repeat(8);
-
             return (
               <div
                 key={p.id}
                 className="project-row"
                 onClick={() => navigate('/work/' + p.id)}
-                onMouseEnter={() => setHoveredProject(p)}
-                onMouseLeave={() => setHoveredProject(null)}
+                onMouseEnter={handleMouseEnterRow}
+                onMouseLeave={handleMouseLeaveRow}
               >
                 <div className="project-code">{p.code || `PRJ-00${p.id}`}</div>
                 <div className="project-name">{p.name}</div>
@@ -65,21 +116,9 @@ export default function Work() {
         )}
       </div>
 
-      {hoveredProject && (
-        <div
-          className="cursor-pill"
-          style={{
-            left: cursorPos.x + 'px',
-            top: cursorPos.y + 'px',
-          }}
-        >
-          <div className="cursor-marquee">
-            {((hoveredProject.techStack || 'PROJECT').replace(/,/g, ' →') + ' → ').repeat(6)}
-            &nbsp;&nbsp;
-            {((hoveredProject.techStack || 'PROJECT').replace(/,/g, ' →') + ' → ').repeat(6)}
-          </div>
-        </div>
-      )}
+      <div className="cursor-pill" ref={pillRef}>
+        VIEW PROJECT ↗
+      </div>
     </div>
   );
 }

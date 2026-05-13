@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../api/apiClient';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ export default function Login() {
     setIsLoading(true);
     setError('');
     try {
-      const res = await fetch('https://backend-g3hl.onrender.com/api/auth/login', {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -27,7 +28,7 @@ export default function Login() {
         setError('ACCESS DENIED_');
         setIsLoading(false);
       }
-    } catch (err) {
+    } catch {
       setError('CONNECTION FAILED_');
       setIsLoading(false);
     }

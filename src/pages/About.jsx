@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { get } from '../api/apiClient';
+import { get, BASE_URL } from '../api/apiClient';
 
 function About() {
   const [about, setAbout] = useState(null);
@@ -11,7 +11,7 @@ function About() {
   }, []);
 
   const handleDownload = () => {
-    window.location.href = 'https://backend-g3hl.onrender.com/api/resume/download';
+    window.location.href = `${BASE_URL}/resume/download`;
   };
 
   return (

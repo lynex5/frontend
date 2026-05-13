@@ -24,14 +24,14 @@ function Navigation() {
 
   return (
     <nav>
-      <Link to="/" className="nav-brand">RAHUL</Link>
+      <Link to="/" className="nav-brand nav-item nav-delay-0">RAHUL</Link>
       <div className="nav-links">
-        <Link to="/work" className={location.pathname.startsWith('/work') ? 'active' : ''}>Work</Link>
-        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
-        <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
-        {!token && <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>Login</Link>}
-        {token && <Link to="/dashboard" className={`nav-dashboard ${location.pathname === '/dashboard' ? 'active' : ''}`}>DASHBOARD</Link>}
-        {token && <button onClick={handleLogout}>LOGOUT</button>}
+        <Link to="/work" className={`nav-item nav-delay-1 ${location.pathname.startsWith('/work') ? 'active' : ''}`}>Work</Link>
+        <Link to="/about" className={`nav-item nav-delay-2 ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
+        <Link to="/contact" className={`nav-item nav-delay-3 ${location.pathname === '/contact' ? 'active' : ''}`}>Contact</Link>
+        {!token && <Link to="/login" className={`nav-item nav-delay-4 ${location.pathname === '/login' ? 'active' : ''}`}>Login</Link>}
+        {token && <Link to="/dashboard" className={`nav-item nav-delay-4 nav-dashboard ${location.pathname === '/dashboard' ? 'active' : ''}`}>DASHBOARD</Link>}
+        {token && <button className="nav-item nav-delay-5" onClick={handleLogout}>LOGOUT</button>}
       </div>
     </nav>
   );

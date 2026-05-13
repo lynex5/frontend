@@ -7,14 +7,16 @@ export default function SkillsManager() {
     const [name, setName] = useState('');
     const { showToast } = useToast();
 
-    useEffect(() => { fetchSkills(); }, []);
-
     const fetchSkills = async () => {
         try {
             const data = await authGet('/skills');
             setSkills(data || []);
-        } catch(e) { }
+        } catch { 
+            showToast('FAILED TO LOAD SKILLS_', 'error');
+        }
     };
+
+    useEffect(() => { fetchSkills(); }, []);
 
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -23,7 +25,7 @@ export default function SkillsManager() {
             showToast('SKILL ADDED_', 'success');
             setName('');
             fetchSkills();
-        } catch(e) { showToast('OPERATION FAILED_', 'error'); }
+        } catch { showToast('OPERATION FAILED_', 'error'); }
     };
 
     const handleDelete = async (id) => {
@@ -31,7 +33,7 @@ export default function SkillsManager() {
             await authDelete(`/skills/${id}`);
             showToast('SKILL REMOVED_', 'success');
             fetchSkills();
-        } catch(e) { showToast('OPERATION FAILED_', 'error'); }
+        } catch { showToast('OPERATION FAILED_', 'error'); }
     };
 
     return (
