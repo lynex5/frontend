@@ -74,7 +74,7 @@ export default function ResumeManager() {
                     <>
                         <span style={{ fontFamily: 'var(--font-mono)' }}>📄 {fileName} <span style={{ color: '#555', marginLeft: '16px', fontSize: '11px' }}>{uploadDate}</span></span>
                         <div>
-                            <a href="http://localhost:8080/api/resume/download" target="_blank" rel="noreferrer" className="dash-btn" style={{ textDecoration: 'none', marginRight: '8px' }}>DOWNLOAD</a>
+                            <a href="https://backend-g3hl.onrender.com/api/resume/download" target="_blank" rel="noreferrer" className="dash-btn" style={{ textDecoration: 'none', marginRight: '8px' }}>DOWNLOAD</a>
                             <button className="dash-btn dash-btn-delete" onClick={handleDelete}>DELETE</button>
                         </div>
                     </>

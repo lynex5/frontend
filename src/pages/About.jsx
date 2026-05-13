@@ -11,7 +11,7 @@ function About() {
   }, []);
 
   const handleDownload = () => {
-    window.open('http://localhost:8080/api/resume/download', '_blank');
+    window.open('https://backend-g3hl.onrender.com/api/resume/download', '_blank');
   };
 
   return (

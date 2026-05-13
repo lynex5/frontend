@@ -13,7 +13,7 @@ export default function Login() {
     setIsLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:8080/api/auth/login', {
+      const res = await fetch('https://backend-g3hl.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
