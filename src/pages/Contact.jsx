@@ -5,6 +5,14 @@ function Contact() {
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(null);
 
+  const formatUrl = (url) => {
+    if (!url) return "#";
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      return `https://${url}`;
+    }
+    return url;
+  };
+
   useEffect(() => {
     get('/contact').then(data => {
       if(data && data.length > 0) setContact(data[0]);
@@ -35,13 +43,13 @@ function Contact() {
               {copied ? "COPIED ✓" : "COPY EMAIL"}
               <span className="contact-btn-arrow">→</span>
             </button>
-            <a href={contact?.linkedinUrl || "#"} className="contact-btn" style={{pointerEvents: contact?.linkedinUrl ? 'auto' : 'none', opacity: contact?.linkedinUrl ? 1 : 0.5}}>
+            <a href={formatUrl(contact?.linkedinUrl)} target="_blank" rel="noreferrer" className="contact-btn" style={{pointerEvents: contact?.linkedinUrl ? 'auto' : 'none', opacity: contact?.linkedinUrl ? 1 : 0.5}}>
               LinkedIn <span className="contact-btn-arrow">↗</span>
             </a>
-            <a href={contact?.githubUrl || "#"} className="contact-btn" style={{pointerEvents: contact?.githubUrl ? 'auto' : 'none', opacity: contact?.githubUrl ? 1 : 0.5}}>
+            <a href={formatUrl(contact?.githubUrl)} target="_blank" rel="noreferrer" className="contact-btn" style={{pointerEvents: contact?.githubUrl ? 'auto' : 'none', opacity: contact?.githubUrl ? 1 : 0.5}}>
               GitHub <span className="contact-btn-arrow">↗</span>
             </a>
-            <a href={contact?.youtubeUrl || "#"} className="contact-btn" style={{pointerEvents: contact?.youtubeUrl ? 'auto' : 'none', opacity: contact?.youtubeUrl ? 1 : 0.5}}>
+            <a href={formatUrl(contact?.youtubeUrl)} target="_blank" rel="noreferrer" className="contact-btn" style={{pointerEvents: contact?.youtubeUrl ? 'auto' : 'none', opacity: contact?.youtubeUrl ? 1 : 0.5}}>
               YouTube <span className="contact-btn-arrow">↗</span>
             </a>
           </div>

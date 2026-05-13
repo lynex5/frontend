@@ -9,6 +9,14 @@ function ProjectDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const formatUrl = (url) => {
+    if (!url) return "#";
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      return `https://${url}`;
+    }
+    return url;
+  };
+
   useEffect(() => {
     get(`/projects/${id}`)
       .then(data => {
@@ -92,10 +100,10 @@ function ProjectDetail() {
               <div className="detail-section-label">[ LINKS ]</div>
               <div>
                 {project.githubLink && (
-                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="link-btn">GITHUB ↗</a>
+                  <a href={formatUrl(project.githubLink)} target="_blank" rel="noreferrer" className="link-btn">GITHUB ↗</a>
                 )}
                 {project.liveLink && (
-                  <a href={project.liveLink} target="_blank" rel="noreferrer" className="link-btn">LIVE SITE ↗</a>
+                  <a href={formatUrl(project.liveLink)} target="_blank" rel="noreferrer" className="link-btn">LIVE SITE ↗</a>
                 )}
               </div>
             </div>
