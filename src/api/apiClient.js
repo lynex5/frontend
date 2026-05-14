@@ -1,6 +1,12 @@
 export const BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-g3hl.onrender.com/api';
 
 const handleResponse = async (res) => {
+    if (res.status === 401 || res.status === 403) {
+        if (window.location.pathname !== '/login') {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+        }
+    }
     if (!res.ok) {
         let err;
         try { err = await res.json(); } catch (e) { err = { message: 'Request failed' }; }
